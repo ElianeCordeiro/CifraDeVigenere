@@ -6,10 +6,10 @@ import java.util.List;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        String textoClaro = "O \"Pássaro 2x";
+        String textoClaro = "O \"Pássaro 2|&x";
         String chave = "Casa";
 
         String textoCifrado = encriptar(textoClaro, chave);
@@ -20,7 +20,7 @@ public class Main {
     }
 
 
-    public static String encriptar(String texto, String chave){
+    public static String encriptar(String texto, String chave) throws Exception{
         String textoCifrado = "";
 
         String alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789áéíóúâêôã ,;._#*\"-+";
@@ -29,13 +29,14 @@ public class Main {
         List<Integer> numericoChave = new ArrayList();
 
         if(texto.length()==0 || chave.length() ==0){
-            return "Texto ou chave não informados";
+            throw new Exception("Texto ou chave não informados");
         }
 
         //Verifica caracteres inválidos
         for(int i=0; i <texto.length(); i++){
             if(alfabeto.indexOf(texto.charAt(i)) == -1){
-                return "Texto não pode ser cifrado. Caracter inválido";
+                throw new Exception("Texto não pode ser cifrado. Caracter inválido");
+                //return "Texto não pode ser cifrado. Caracter inválido";
             }
         }
 
